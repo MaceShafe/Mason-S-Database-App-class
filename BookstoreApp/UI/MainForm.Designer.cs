@@ -30,7 +30,7 @@
         {
             panel1 = new Panel();
             label2 = new Label();
-            label1 = new Label();
+            productsLabel = new Label();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
             label3 = new Label();
@@ -45,7 +45,7 @@
             // panel1
             // 
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
+            panel1.Controls.Add(productsLabel);
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
@@ -62,15 +62,18 @@
             label2.TabIndex = 2;
             label2.Text = "Manage the catolouge of products";
             // 
-            // label1
+            // productsLabel
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 40F, FontStyle.Bold);
-            label1.Location = new Point(3, 232);
-            label1.Name = "label1";
-            label1.Size = new Size(316, 89);
-            label1.TabIndex = 1;
-            label1.Text = "Products";
+            productsLabel.AutoSize = true;
+            productsLabel.Font = new Font("Segoe UI", 40F, FontStyle.Bold);
+            productsLabel.Location = new Point(3, 232);
+            productsLabel.Name = "productsLabel";
+            productsLabel.Size = new Size(316, 89);
+            productsLabel.TabIndex = 1;
+            productsLabel.Text = "Products";
+            productsLabel.Click += productsLabel_Click;
+            productsLabel.MouseLeave += productsLabel_MouseLeave;
+            productsLabel.MouseHover += productsLabel_MouseHover;
             // 
             // pictureBox1
             // 
@@ -141,7 +144,7 @@
         #endregion
 
         private Panel panel1;
-        private Label label1;
+        private Label productsLabel;
         private PictureBox pictureBox1;
         private Label label2;
         private Panel panel2;
