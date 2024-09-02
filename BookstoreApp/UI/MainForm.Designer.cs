@@ -1,4 +1,4 @@
-﻿namespace BookstoreApp
+﻿namespace BookstoreApp.UI
 {
     partial class MainForm
     {
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            pictureBox1 = new PictureBox();
-            label1 = new Label();
             label2 = new Label();
+            label1 = new Label();
+            pictureBox1 = new PictureBox();
             panel2 = new Panel();
             label3 = new Label();
             label4 = new Label();
@@ -52,14 +52,15 @@
             panel1.Size = new Size(435, 405);
             panel1.TabIndex = 0;
             // 
-            // pictureBox1
+            // label2
             // 
-            pictureBox1.BackColor = SystemColors.ControlDark;
-            pictureBox1.Location = new Point(3, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(429, 226);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.Location = new Point(18, 321);
+            label2.Name = "label2";
+            label2.Size = new Size(340, 28);
+            label2.TabIndex = 2;
+            label2.Text = "Manage the catolouge of products";
             // 
             // label1
             // 
@@ -71,15 +72,14 @@
             label1.TabIndex = 1;
             label1.Text = "Products";
             // 
-            // label2
+            // pictureBox1
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label2.Location = new Point(18, 321);
-            label2.Name = "label2";
-            label2.Size = new Size(340, 28);
-            label2.TabIndex = 2;
-            label2.Text = "Manage the catolouge of products";
+            pictureBox1.BackColor = SystemColors.ControlDark;
+            pictureBox1.Location = new Point(3, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(429, 226);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // panel2
             // 
@@ -124,7 +124,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(948, 552);
+            ClientSize = new Size(948, 476);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "MainForm";

@@ -1,4 +1,4 @@
-namespace BookstoreApp
+namespace BookstoreApp.UI
 {
     internal static class Program
     {
