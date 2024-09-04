@@ -1,6 +1,6 @@
 ﻿namespace BookstoreApp.UI
 {
-    partial class NewProductsForm
+    partial class NewProductForm
     {
         /// <summary>
         /// Required designer variable.
@@ -107,6 +107,7 @@
             btnSave.TabIndex = 7;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // NewProductsForm
             // 

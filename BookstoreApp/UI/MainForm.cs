@@ -10,6 +10,7 @@ namespace BookstoreApp.UI
         private void productsLabel_Click(object sender, EventArgs e)
         {
             ProductsForm productsForm = new();
+            productsForm.StartPosition= FormStartPosition.CenterParent;
             productsForm.ShowDialog();
         }
 
@@ -23,5 +24,7 @@ namespace BookstoreApp.UI
             productsLabel.ForeColor = Color.Black;
 
         }
+
+ 
     }
 }
