@@ -34,6 +34,7 @@ namespace BookstoreApp.UI
             newProductsForm.StartPosition = FormStartPosition.CenterParent;
 
             products.Add(newProductsForm.GetNewProduct());
+            ProductDatabase.SaveProducts(products);
             updateProductList();
 
             //newProductsForm.ShowDialog();
@@ -56,6 +57,7 @@ namespace BookstoreApp.UI
                 if (result == DialogResult.Yes)
                 {
                     products.Remove(selectedProduct);
+                    ProductDatabase.SaveProducts(products);
                     updateProductList();
                 }
             }

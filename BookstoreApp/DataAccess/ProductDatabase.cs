@@ -10,21 +10,52 @@ namespace BookstoreApp.DataAccess
     internal static class ProductDatabase
     {
 
-            public static List<Product> GetProducts()
+        private static string filename = "Product.txt";
+        private static string path = Environment.CurrentDirectory;
+        private static string separator = "|";
+
+        public static List<Product> GetProducts()
+        {
+            var products = new List<Product>();
+            using StreamReader reader = new StreamReader(Path.Combine(path, filename));
+
+            while (reader.Peek() != -1)
             {
-                var products = new List<Product>();
+                string line = reader.ReadLine();
+                string[] parts = line.Split(separator);
+
+                if (parts.Length == 3)
+                {
+                    products.Add(new Product()
+                    {
+                        SKU = parts[0],
+                        Description = parts[1],
+                        Price = Convert.ToDecimal(parts[2])
+                    });
+                }
+            }
 
             if (products.Count == 0)
             {
-                products.Add(new Product() { SKU = "ABC", Description = "Some old product", Price = 10.0m});
-            }
-                return products;
+                products.Add(new Product() { SKU = "ABC", Description = "Sample Product", Price = 10.0m });
             }
 
-            public static void SaveProducts(List<Product> products)
+            
+            return products;
+        }
+
+
+        public static void SaveProducts(List<Product> products)
             {
 
-            }
-    }
+                using StreamWriter sw = new StreamWriter(Path.Combine(path, filename));
 
-}
+                foreach (Product product in products)
+                {
+                    sw.Write(product.SKU + separator);
+                    sw.Write(product.Description + separator);
+                    sw.WriteLine(product.Price);
+                }
+            }
+        }
+    }
