@@ -117,6 +117,9 @@
             label4.Size = new Size(370, 89);
             label4.TabIndex = 1;
             label4.Text = "Customers";
+            label4.Click += label4_Click;
+            label4.MouseLeave += label4_MouseLeave;
+            label4.MouseHover += label4_MouseHover;
             // 
             // pictureBox2
             // 
@@ -136,7 +139,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "MainForm";
-            Text = "Form1";
+            Text = "Bookstore Manager";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

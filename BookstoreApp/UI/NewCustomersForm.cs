@@ -11,20 +11,20 @@ using System.Windows.Forms;
 
 namespace BookstoreApp.UI
 {
-    public partial class NewProductForm : Form
+    public partial class NewCustomersForm : Form
     {
 
-        private Products product = null!;
+        private Customers customer = null!;
 
-        public NewProductForm()
+        public NewCustomersForm()
         {
             InitializeComponent();
         }
 
-        public Products GetNewProduct()
+        public Customers GetNewCustomer()
         {
             this.ShowDialog();
-            return product; 
+            return customer;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -32,15 +32,16 @@ namespace BookstoreApp.UI
             this.Close();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
-            product = new()
+            customer = new()
             {
-                SKU = textBox1.Text,
-                Description = textBox2.Text,
-                Price = Convert.ToDecimal(textBox3.Text)
+                FirstName = textBox1.Text,
+                LastName = textBox2.Text,
+                Email = textBox3.Text
             };
             this.Close();
         }
+
     }
 }

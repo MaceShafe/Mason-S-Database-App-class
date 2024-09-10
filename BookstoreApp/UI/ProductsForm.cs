@@ -14,7 +14,7 @@ namespace BookstoreApp.UI
 {
     public partial class ProductsForm : Form
     {
-        private List<Product> products = null!;
+        private List<Products> products = null!;
 
         public ProductsForm()
         {
@@ -44,7 +44,7 @@ namespace BookstoreApp.UI
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
-            Product selectedProduct = productsListBox.SelectedItem as Product;
+            Products selectedProduct = productsListBox.SelectedItem as Products;
 
             if (selectedProduct != null)
             {
@@ -78,7 +78,7 @@ namespace BookstoreApp.UI
         {
             productsListBox.Items.Clear();
 
-            foreach (Product product in products)
+            foreach (Products product in products)
             {
                 productsListBox.Items.Add(product);
             }

@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace BookstoreApp.Models
 {
-    public class Product
+    public class Customers
     {
         public int Id { get; set; }
 
-        public string SKU { get; set; } = "";
+        public string FirstName { get; set; } = "";
 
-        public string Description { get; set; } = "";
+        public string LastName { get; set; } = "";
         
-        public decimal Price { get; set; }
+        public string Email { get; set; } = "";
 
         public override string ToString()
         {
-            return $"{SKU} {Description} ({Price.ToString("c")})";
+            return $"{FirstName} {LastName} {Email}";
         }
     }
 }

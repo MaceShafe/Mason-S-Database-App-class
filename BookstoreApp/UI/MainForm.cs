@@ -9,9 +9,9 @@ namespace BookstoreApp.UI
 
         private void productsLabel_Click(object sender, EventArgs e)
         {
-            ProductsForm productsForm = new();
-            productsForm.StartPosition= FormStartPosition.CenterParent;
-            productsForm.ShowDialog();
+            ProductsForm productForm = new();
+            productForm.StartPosition = FormStartPosition.CenterParent;
+            productForm.ShowDialog();
         }
 
         private void productsLabel_MouseHover(object sender, EventArgs e)
@@ -25,6 +25,22 @@ namespace BookstoreApp.UI
 
         }
 
- 
+        private void label4_Click(object sender, EventArgs e)
+        {
+            CustomersForm customerForm = new();
+            customerForm.StartPosition = FormStartPosition.CenterParent;
+            customerForm.ShowDialog();
+        }
+
+        private void label4_MouseHover(object sender, EventArgs e)
+        {
+            label4.ForeColor = Color.Blue;
+        }
+
+        private void label4_MouseLeave(object sender, EventArgs e)
+        {
+            label4.ForeColor = Color.Black;
+
+        }
     }
 }

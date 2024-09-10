@@ -4,19 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.LinkLabel;
 
 namespace BookstoreApp.DataAccess
 {
-    internal static class ProductDatabase
+    internal static class CustomerDatabase
     {
 
-        private static string filename = "Product.txt";
+        private static string filename = "Customer.txt";
         private static string path = Environment.CurrentDirectory;
         private static string separator = "|";
 
-        public static List<Products> GetProducts()
+        public static List<Customers> GetCustomers()
         {
-            var products = new List<Products>();
+
+
+            var customers = new List<Customers>();
+
             using StreamReader reader = new StreamReader(Path.Combine(path, filename));
 
             while (reader.Peek() != -1)
@@ -26,35 +30,35 @@ namespace BookstoreApp.DataAccess
 
                 if (parts.Length == 3)
                 {
-                    products.Add(new Products()
+                    customers.Add(new Customers()
                     {
-                        SKU = parts[0],
-                        Description = parts[1],
-                        Price = Convert.ToDecimal(parts[2])
+                        FirstName = parts[0],
+                        LastName = parts[1],
+                        Email = (parts[2])
                     });
                 }
             }
 
-            if (products.Count == 0)
+            if (customers.Count == 0)
             {
-                products.Add(new Products() { SKU = "ABC", Description = "Sample Product", Price = 10.0m });
+                customers.Add(new Customers() { FirstName = "John", LastName = "Doe", Email = "JD@notanemail.com" });
             }
 
             
-            return products;
+            return customers;
         }
 
 
-        public static void SaveProducts(List<Products> products)
+        public static void SaveCustomers(List<Customers> customers)
             {
 
                 using StreamWriter sw = new StreamWriter(Path.Combine(path, filename));
 
-                foreach (Products product in products)
+                foreach (Customers customer in customers)
                 {
-                    sw.Write(product.SKU + separator);
-                    sw.Write(product.Description + separator);
-                    sw.WriteLine(product.Price);
+                    sw.Write(customer.FirstName + separator);
+                    sw.Write(customer.LastName + separator);
+                    sw.WriteLine(customer.Email);
                 }
             }
         }
