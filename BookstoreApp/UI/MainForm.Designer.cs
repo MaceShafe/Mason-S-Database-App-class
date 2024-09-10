@@ -37,10 +37,16 @@
             label3 = new Label();
             label4 = new Label();
             pictureBox2 = new PictureBox();
+            panel3 = new Panel();
+            label1 = new Label();
+            label5 = new Label();
+            pictureBox3 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -131,11 +137,52 @@
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
+            // panel3
+            // 
+            panel3.BackColor = Color.White;
+            panel3.Controls.Add(label1);
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(pictureBox3);
+            panel3.Location = new Point(930, 15);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(435, 402);
+            panel3.TabIndex = 4;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label1.Location = new Point(22, 321);
+            label1.Name = "label1";
+            label1.Size = new Size(320, 28);
+            label1.TabIndex = 2;
+            label1.Text = "See the complete list of invoices";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 40F, FontStyle.Bold);
+            label5.Location = new Point(3, 232);
+            label5.Name = "label5";
+            label5.Size = new Size(395, 89);
+            label5.TabIndex = 1;
+            label5.Text = "All Invoices";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackColor = SystemColors.ControlDark;
+            pictureBox3.Location = new Point(3, 3);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(429, 226);
+            pictureBox3.TabIndex = 0;
+            pictureBox3.TabStop = false;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(948, 476);
+            ClientSize = new Size(1518, 459);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "MainForm";
@@ -146,6 +193,9 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
         }
 
@@ -159,5 +209,9 @@
         private Label label3;
         private Label label4;
         private PictureBox pictureBox2;
+        private Panel panel3;
+        private Label label1;
+        private Label label5;
+        private PictureBox pictureBox3;
     }
 }
