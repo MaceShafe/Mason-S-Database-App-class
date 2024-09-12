@@ -14,7 +14,7 @@ namespace BookstoreApp.UI
 {
     public partial class ProductsForm : Form
     {
-        private List<Products> products = null!;
+        private List<Product> products = null!;
 
         public ProductsForm()
         {
@@ -23,7 +23,7 @@ namespace BookstoreApp.UI
 
         private void ProductsForm_Load(object sender, EventArgs e)
         {
-            products = ProductDatabase.GetProducts();
+            products = ProductsDatabase.GetProducts();
 
             updateProductList();
         }
@@ -34,7 +34,7 @@ namespace BookstoreApp.UI
             newProductsForm.StartPosition = FormStartPosition.CenterParent;
 
             products.Add(newProductsForm.GetNewProduct());
-            ProductDatabase.SaveProducts(products);
+            ProductsDatabase.SaveProducts(products);
             updateProductList();
 
             //newProductsForm.ShowDialog();
@@ -44,7 +44,7 @@ namespace BookstoreApp.UI
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
-            Products selectedProduct = productsListBox.SelectedItem as Products;
+            Product selectedProduct = productsListBox.SelectedItem as Product;
 
             if (selectedProduct != null)
             {
@@ -57,7 +57,7 @@ namespace BookstoreApp.UI
                 if (result == DialogResult.Yes)
                 {
                     products.Remove(selectedProduct);
-                    ProductDatabase.SaveProducts(products);
+                    ProductsDatabase.SaveProducts(products);
                     updateProductList();
                 }
             }
@@ -78,7 +78,7 @@ namespace BookstoreApp.UI
         {
             productsListBox.Items.Clear();
 
-            foreach (Products product in products)
+            foreach (Product product in products)
             {
                 productsListBox.Items.Add(product);
             }

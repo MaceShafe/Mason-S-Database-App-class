@@ -4,12 +4,12 @@
 
 ### Current Progress
 
-- Customers form
-- Products form
+- Customers form + logic
+- Products form + logic
 - Adding and removing from both forms
+- Invoice form + logic
 
 ### To-do
 
-- Invoice form
-- Invoice form logic
+- Fixing repeated invoicebug
 - Linking forms together

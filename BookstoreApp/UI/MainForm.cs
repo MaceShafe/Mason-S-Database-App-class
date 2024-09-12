@@ -42,5 +42,24 @@ namespace BookstoreApp.UI
             label4.ForeColor = Color.Black;
 
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            InvoicesForm invoicesForm = new();
+            invoicesForm.StartPosition = FormStartPosition.CenterParent;
+            invoicesForm.ShowDialog();
+        }
+
+        private void label5_MouseHover(object sender, EventArgs e)
+        {
+            label5.ForeColor = Color.Blue;
+
+        }
+
+        private void label5_MouseLeave(object sender, EventArgs e)
+        {
+            label5.ForeColor = Color.Black;
+
+        }
     }
 }

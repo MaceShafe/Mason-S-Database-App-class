@@ -167,10 +167,15 @@
             label5.Size = new Size(395, 89);
             label5.TabIndex = 1;
             label5.Text = "All Invoices";
+            label5.Click += label5_Click;
+            label5.MouseLeave += label5_MouseLeave;
+            label5.MouseHover += label5_MouseHover;
             // 
             // pictureBox3
             // 
+            pictureBox3.Anchor = AnchorStyles.None;
             pictureBox3.BackColor = SystemColors.ControlDark;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(3, 3);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(429, 226);
@@ -181,7 +186,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1518, 459);
+            ClientSize = new Size(1383, 459);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);

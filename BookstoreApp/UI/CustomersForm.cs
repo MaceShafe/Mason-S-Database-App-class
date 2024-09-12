@@ -18,7 +18,7 @@ namespace BookstoreApp.UI
     public partial class CustomersForm : Form
     {
 
-        private List<Customers> customer = null!;
+        private List<Customer> customer = null!;
 
         public CustomersForm()
         {
@@ -30,7 +30,7 @@ namespace BookstoreApp.UI
         {
 
 
-            customer = CustomerDatabase.GetCustomers();
+            customer = CustomersDatabase.GetCustomers();
 
             updateCustomerList();
         }
@@ -41,14 +41,14 @@ namespace BookstoreApp.UI
             newCustomersForm.StartPosition = FormStartPosition.CenterParent;
 
             customer.Add(newCustomersForm.GetNewCustomer());
-            CustomerDatabase.SaveCustomers(customer);
+            CustomersDatabase.SaveCustomers(customer);
             updateCustomerList();
         }
 
         private void btnDelete_Click_1(object sender, EventArgs e)
         {
 
-            Customers selectedCustomer = customerListBox.SelectedItem as Customers;
+            Customer selectedCustomer = customerListBox.SelectedItem as Customer;
 
             if (selectedCustomer != null)
             {
@@ -61,7 +61,7 @@ namespace BookstoreApp.UI
                 if (result == DialogResult.Yes)
                 {
                     customer.Remove(selectedCustomer);
-                    CustomerDatabase.SaveCustomers(customer);
+                    CustomersDatabase.SaveCustomers(customer);
                     updateCustomerList();
                 }
             }
@@ -83,7 +83,7 @@ namespace BookstoreApp.UI
         {
             customerListBox.Items.Clear();
 
-            foreach (Customers customer in customer)
+            foreach (Customer customer in customer)
             {
                 customerListBox.Items.Add(customer);
             }
