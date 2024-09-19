@@ -14,14 +14,14 @@ namespace BookstoreApp.UI
     public partial class NewProductForm : Form
     {
 
-        private Products product = null!;
+        private Product product = null!;
 
         public NewProductForm()
         {
             InitializeComponent();
         }
 
-        public Products GetNewProduct()
+        public Product GetNewProduct()
         {
             this.ShowDialog();
             return product; 

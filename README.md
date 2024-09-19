@@ -12,5 +12,3 @@
 ### To-do
 
 - Fixing repeated invoicebug
-- Linking forms together
-=======
