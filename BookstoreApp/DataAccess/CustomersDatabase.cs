@@ -11,55 +11,24 @@ namespace BookstoreApp.DataAccess
     internal static class CustomersDatabase
     {
 
-        private static string filename = "Customer.txt";
-        private static string path = Environment.CurrentDirectory;
-        private static string separator = "|";
 
         public static List<Customer> GetCustomers()
         {
 
 
             var customers = new List<Customer>();
-            try {
-                using StreamReader reader = new (
-                    new FileStream(
-                    Path.Combine(path, filename),
-                    FileMode.OpenOrCreate, FileAccess.Read)
-                    );
-
-                while (reader.Peek() != -1)
-                {
-                    string line = reader.ReadLine();
-                    string[] parts = line.Split(separator);
-
-                    if (parts.Length == 4)
-                    {
-                        customers.Add(new Customer()
-                        {
-                            Id = Convert.ToInt32(parts[0]),
-                            FirstName = parts[1],
-                            LastName = parts[2],
-                            Email = (parts[3])
-                        });
-                    }
-                }
-
-                if (customers.Count == 0)
-                {
-                    customers.Add(new Customer() { Id = 1, FirstName = "John", LastName = "Doe", Email = "JD@notanemail.com" });
-                    customers.Add(new Customer() { Id = 2, FirstName = "Jane", LastName = "Doe", Email = "JD2@notanemail.com" });
-                    customers.Add(new Customer() { Id = 2, FirstName = "Mark", LastName = "Leahwitz", Email = "LW@notanemail.com" });
 
 
-                }
-
-
-            }
-            catch (FileNotFoundException ex)
+            if (customers.Count == 0)
             {
-                Console.WriteLine(ex.Message);
+                customers.Add(new Customer() { Id = 1, Name = "John Doe" });
+                customers.Add(new Customer() { Id = 2, Name = "Jane Doe"});
+                customers.Add(new Customer() { Id = 2, Name = "Mark Leahwitz"});
+
+
             }
             return customers;
+
 
         }
 
@@ -67,21 +36,7 @@ namespace BookstoreApp.DataAccess
         public static void SaveCustomers(List<Customer> customers)
             {
 
-            using StreamWriter sw = new StreamWriter(
-                new FileStream(
-                    Path.Combine(path, filename),
-                    FileMode.Create, 
-                    FileAccess.Write)
-                );
-
-
-                foreach (Customer customer in customers)
-                {
-                    sw.WriteLine(customer.Id + separator);
-                    sw.Write(customer.FirstName + separator);
-                    sw.Write(customer.LastName + separator);
-                    sw.WriteLine(customer.Email);
-                }
+            
             }
         }
     }

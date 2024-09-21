@@ -53,7 +53,7 @@ namespace BookstoreApp.UI
             if (selectedCustomer != null)
             {
                 DialogResult result = MessageBox.Show(
-                                        $"Are you sure you want to delete {selectedCustomer.FirstName}?",
+                                        $"Are you sure you want to delete {selectedCustomer.Name}?",
                                         "Confirm Delete",
                                         MessageBoxButtons.YesNo,
                                         MessageBoxIcon.Question);

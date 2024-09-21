@@ -35,7 +35,7 @@ namespace BookstoreApp.UI
                                    on invoice.CustomerID equals customer.Id
                                    select new
                                    {
-                                       customer.FullName,
+                                       customer.Name,
                                        invoice.Id,
                                        invoice.InvoiceDate,
                                        invoice.InvoiceTotal
@@ -47,7 +47,7 @@ namespace BookstoreApp.UI
             {
                 if (invoice != null)
                 {
-                    listView1.Items.Add(invoice.FullName);
+                    listView1.Items.Add(invoice.Name);
                     listView1.Items[i].SubItems.Add(invoice.Id.ToString());
                     listView1.Items[i].SubItems.Add(invoice.InvoiceDate.ToString());
                     listView1.Items[i].SubItems.Add(invoice.InvoiceTotal.ToString());
