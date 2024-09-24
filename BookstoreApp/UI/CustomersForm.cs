@@ -17,6 +17,7 @@ namespace BookstoreApp.UI
 
     public partial class CustomersForm : Form
     {
+        private readonly CustomersDatabase customersDatabase = new();
 
         private List<Customer> customer = null!;
 
@@ -30,7 +31,7 @@ namespace BookstoreApp.UI
         {
 
 
-            customer = CustomersDatabase.GetCustomers();
+            customer = customersDatabase.GetCustomers();
 
             updateCustomerList();
         }
@@ -41,7 +42,7 @@ namespace BookstoreApp.UI
             newCustomersForm.StartPosition = FormStartPosition.CenterParent;
 
             customer.Add(newCustomersForm.GetNewCustomer());
-            CustomersDatabase.SaveCustomers(customer);
+            customersDatabase.SaveCustomers(customer);
             updateCustomerList();
         }
 
@@ -61,7 +62,7 @@ namespace BookstoreApp.UI
                 if (result == DialogResult.Yes)
                 {
                     customer.Remove(selectedCustomer);
-                    CustomersDatabase.SaveCustomers(customer);
+                    customersDatabase.SaveCustomers(customer);
                     updateCustomerList();
                 }
             }

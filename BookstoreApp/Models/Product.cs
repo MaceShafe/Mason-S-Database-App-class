@@ -11,6 +11,7 @@ public partial class Product
     [Key]
     [StringLength(10)]
     [Unicode(false)]
+    [Column("ProductCode")]
     public string SKU { get; set; } = null!;
 
     [StringLength(50)]

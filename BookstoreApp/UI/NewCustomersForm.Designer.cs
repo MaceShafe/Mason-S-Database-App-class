@@ -111,10 +111,8 @@
 
         private Button btnSave;
         private Button btnCancel;
-        private TextBox textBox3;
         private Label label3;
         private TextBox emailTextBox;
-        private Label label2;
         private TextBox nameTextBox;
         private Label label1;
     }

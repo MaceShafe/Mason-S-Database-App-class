@@ -1,4 +1,5 @@
 ﻿using BookstoreApp.Models;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace BookstoreApp.DataAccess
 {
-    internal static class ProductsDatabase
+    internal class ProductsDatabase
     {
 
-     
-        public static List<Product> GetProducts()
+        private MMABooksContext database = new();
+        public List<Product> GetProducts()
         {
-            var products = new List<Product>();
+            var products = database.Products.ToList();
          
 
             if (products.Count == 0)
@@ -27,9 +28,10 @@ namespace BookstoreApp.DataAccess
         }
 
 
-        public static void SaveProducts(List<Product> products)
+        public void SaveProducts(Product product)
             {
-
+            database.Products.Add(product);
+            database.SaveChanges();
       
             }
         }

@@ -14,6 +14,11 @@ namespace BookstoreApp.UI
 {
     public partial class InvoicesForm : Form
     {
+
+        private readonly CustomersDatabase customersDatabase=new CustomersDatabase();
+        private readonly InvoicesDatabase invoiceDatabase = new InvoicesDatabase();
+
+
         public InvoicesForm()
         {
             InitializeComponent();
@@ -27,8 +32,8 @@ namespace BookstoreApp.UI
 
         private void InvoicesForm_Load(object sender, EventArgs e)
         {
-            List<Customer> customers = CustomersDatabase.GetCustomers();
-            List<Invoice> invoices = InvoicesDatabase.GetInvoices();
+            List<Customer> customers = customersDatabase.GetCustomers();
+            List<Invoice> invoices = invoiceDatabase.GetInvoices();
 
             var customerInvoices = from invoice in invoices
                                    join customer in customers

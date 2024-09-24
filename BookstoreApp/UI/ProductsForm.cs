@@ -15,6 +15,8 @@ namespace BookstoreApp.UI
     public partial class ProductsForm : Form
     {
         private List<Product> products = null!;
+        private readonly ProductsDatabase db = new();
+
 
         public ProductsForm()
         {
@@ -23,7 +25,7 @@ namespace BookstoreApp.UI
 
         private void ProductsForm_Load(object sender, EventArgs e)
         {
-            products = ProductsDatabase.GetProducts();
+            products = db.GetProducts();
 
             updateProductList();
         }
@@ -33,15 +35,40 @@ namespace BookstoreApp.UI
             NewProductForm newProductsForm = new();
             newProductsForm.StartPosition = FormStartPosition.CenterParent;
 
-            products.Add(newProductsForm.GetNewProduct());
-            ProductsDatabase.SaveProducts(products);
+            Product newProduct = newProductsForm.GetNewProduct();
+
+            products.Add(newProduct);
+            db.SaveProducts(newProduct);
             updateProductList();
 
             //newProductsForm.ShowDialog();
 
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            Product selectedProduct = productsListBox.SelectedItem as Product;
+
+            if (selectedProduct != null)
+            {
+
+                string SKU = selectedProduct.ToString();
+
+                ProductDetailsForm productDetailsForm = new ProductDetailsForm();
+
+
+                productDetailsForm.StartPosition = FormStartPosition.CenterParent;
+                productDetailsForm.ShowDialog();
+
+            }
+            else {
+                DialogResult result = MessageBox.Show("Select an object");
+                    }
+
+
+        }
+
+            private void btnDelete_Click(object sender, EventArgs e)
         {
 
             Product selectedProduct = productsListBox.SelectedItem as Product;
@@ -56,8 +83,10 @@ namespace BookstoreApp.UI
 
                 if (result == DialogResult.Yes)
                 {
+
+
                     products.Remove(selectedProduct);
-                    ProductsDatabase.SaveProducts(products);
+                    db.SaveProducts(selectedProduct);
                     updateProductList();
                 }
             }
@@ -74,6 +103,8 @@ namespace BookstoreApp.UI
             this.Close();
         }
 
+
+
         private void updateProductList()
         {
             productsListBox.Items.Clear();
@@ -83,5 +114,7 @@ namespace BookstoreApp.UI
                 productsListBox.Items.Add(product);
             }
         }
+
+
     }
 }

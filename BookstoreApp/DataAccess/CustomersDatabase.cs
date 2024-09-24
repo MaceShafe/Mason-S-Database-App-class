@@ -8,15 +8,15 @@ using static System.Windows.Forms.LinkLabel;
 
 namespace BookstoreApp.DataAccess
 {
-    internal static class CustomersDatabase
+    internal class CustomersDatabase
     {
 
-
-        public static List<Customer> GetCustomers()
+        private MMABooksContext database = new();
+        public List<Customer> GetCustomers()
         {
 
 
-            var customers = new List<Customer>();
+            var customers = database.Customers.ToList();
 
 
             if (customers.Count == 0)
@@ -33,7 +33,7 @@ namespace BookstoreApp.DataAccess
         }
 
 
-        public static void SaveCustomers(List<Customer> customers)
+        public void SaveCustomers(List<Customer> customers)
             {
 
             
