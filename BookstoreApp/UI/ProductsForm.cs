@@ -47,23 +47,14 @@ namespace BookstoreApp.UI
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
-            Product selectedProduct = productsListBox.SelectedItem as Product;
+            Product product = productsListBox.SelectedItem as Product;
 
-            if (selectedProduct != null)
-            {
-
-                string SKU = selectedProduct.ToString();
-
-                ProductDetailsForm productDetailsForm = new ProductDetailsForm();
+            ProductDetailsForm productDetailsForm = new ProductDetailsForm(product);
 
 
-                productDetailsForm.StartPosition = FormStartPosition.CenterParent;
-                productDetailsForm.ShowDialog();
+            productDetailsForm.StartPosition = FormStartPosition.CenterParent;
+            productDetailsForm.ShowDialog();
 
-            }
-            else {
-                DialogResult result = MessageBox.Show("Select an object");
-                    }
 
 
         }

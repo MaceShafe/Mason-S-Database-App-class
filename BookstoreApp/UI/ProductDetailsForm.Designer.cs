@@ -145,8 +145,10 @@
             // 
             // ProductDetailsForm
             // 
+            AcceptButton = btnSearch;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnExit;
             ClientSize = new Size(458, 211);
             Controls.Add(btnSearch);
             Controls.Add(OnHandTextBox);
@@ -162,6 +164,7 @@
             Controls.Add(label1);
             Name = "ProductDetailsForm";
             Text = "Add/Modify";
+            Load += ProductDetailsForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
