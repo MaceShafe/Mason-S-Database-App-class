@@ -1,5 +1,6 @@
 ﻿using BookstoreApp.DataAccess;
 using BookstoreApp.Models;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +16,9 @@ namespace BookstoreApp.UI
 {
     public partial class ProductDetailsForm : Form
     {
-//        private readonly CustomersDatabase customersDatabase = new CustomersDatabase();
-
         private Product currentProduct;
+        private readonly ProductsDatabase database;
+        
         public ProductDetailsForm()
         {
 
@@ -25,23 +26,13 @@ namespace BookstoreApp.UI
             InitializeComponent();
         }
 
-        public ProductDetailsForm(Product currentProduct) : this() {
-            if(currentProduct==null)
-            {
-                currentProduct = new()
-                {
-                    SKU = "NEW-001",
-                    Description = "An awesome new product",
-                    Price = 50m,
-                    OnHandQuantity = 100
-                };
-            }
-            else
+        public ProductDetailsForm(ProductsDatabase productsDatabase, Product currentProduct) : this()
+        {
+            this.database= productsDatabase;
+            if (currentProduct != null)
             {
                 this.currentProduct = currentProduct;
-
             }
-
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -52,11 +43,23 @@ namespace BookstoreApp.UI
         private void ProductDetailsForm_Load(object sender, EventArgs e)
         {
 
+            if (currentProduct != null)
+            {
+                SKUTextBox.Text = currentProduct.SKU;
+                DescriptionTextBox.Text = currentProduct.Description;
+                PriceTextBox.Text = currentProduct.Price.ToString("c");
+                OnHandTextBox.Text = currentProduct.OnHandQuantity.ToString();
+            }
+            else
+            {
 
-            SKUTextBox.Text = currentProduct.SKU;
-            DescriptionTextBox.Text = currentProduct.Description;
-            PriceTextBox.Text = currentProduct.Price.ToString("c");
-            OnHandTextBox.Text= currentProduct.OnHandQuantity.ToString();
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            
+
 
         }
     }

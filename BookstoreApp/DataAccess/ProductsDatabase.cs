@@ -8,30 +8,34 @@ using System.Threading.Tasks;
 
 namespace BookstoreApp.DataAccess
 {
-    internal class ProductsDatabase
+    public class ProductsDatabase
     {
 
-        private MMABooksContext database = new();
+        private MMABooksContext context = new();
         public List<Product> GetProducts()
         {
-            var products = database.Products.ToList();
-         
+            var products = context.Products.ToList();
+
 
             if (products.Count == 0)
             {
                 products.Add(new Product() { SKU = "ABC", Description = "Sample Product", Price = 10.0m });
             }
 
-           
+
 
             return products;
         }
 
+        public Product GetProduct(string productCode)
+        {
+            return context.Products.Find(productCode);
+        }
 
         public void SaveProducts(Product product)
             {
-            database.Products.Add(product);
-            database.SaveChanges();
+            context.Products.Add(product);
+            context.SaveChanges();
       
             }
         }
