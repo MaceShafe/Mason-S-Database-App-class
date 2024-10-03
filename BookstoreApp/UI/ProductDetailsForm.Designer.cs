@@ -86,6 +86,7 @@
             btnDelete.TabIndex = 4;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnEdit
             // 
@@ -95,6 +96,7 @@
             btnEdit.TabIndex = 5;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnExit
             // 
@@ -117,6 +119,7 @@
             // 
             DescriptionTextBox.Location = new Point(139, 52);
             DescriptionTextBox.Name = "DescriptionTextBox";
+            DescriptionTextBox.ReadOnly = true;
             DescriptionTextBox.Size = new Size(307, 27);
             DescriptionTextBox.TabIndex = 8;
             // 
@@ -124,6 +127,7 @@
             // 
             PriceTextBox.Location = new Point(139, 85);
             PriceTextBox.Name = "PriceTextBox";
+            PriceTextBox.ReadOnly = true;
             PriceTextBox.Size = new Size(125, 27);
             PriceTextBox.TabIndex = 9;
             // 
@@ -131,6 +135,7 @@
             // 
             OnHandTextBox.Location = new Point(139, 118);
             OnHandTextBox.Name = "OnHandTextBox";
+            OnHandTextBox.ReadOnly = true;
             OnHandTextBox.Size = new Size(125, 27);
             OnHandTextBox.TabIndex = 10;
             // 

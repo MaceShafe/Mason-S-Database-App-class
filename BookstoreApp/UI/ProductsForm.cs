@@ -25,7 +25,6 @@ namespace BookstoreApp.UI
 
         private void ProductsForm_Load(object sender, EventArgs e)
         {
-            products = db.GetProducts();
 
             updateProductList();
         }
@@ -38,7 +37,7 @@ namespace BookstoreApp.UI
             Product newProduct = newProductsForm.GetNewProduct();
 
             products.Add(newProduct);
-            db.SaveProducts(newProduct);
+            db.AddProduct(newProduct);
             updateProductList();
 
             //newProductsForm.ShowDialog();
@@ -49,17 +48,18 @@ namespace BookstoreApp.UI
         {
             Product product = productsListBox.SelectedItem as Product;
 
-            ProductDetailsForm productDetailsForm = new ProductDetailsForm(product);
+            ProductDetailsForm productDetailsForm = new ProductDetailsForm(db, product);
 
 
             productDetailsForm.StartPosition = FormStartPosition.CenterParent;
             productDetailsForm.ShowDialog();
 
+            updateProductList();
 
 
         }
 
-            private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
 
             Product selectedProduct = productsListBox.SelectedItem as Product;
@@ -77,7 +77,7 @@ namespace BookstoreApp.UI
 
 
                     products.Remove(selectedProduct);
-                    db.SaveProducts(selectedProduct);
+                    db.DeleteProduct(selectedProduct);
                     updateProductList();
                 }
             }
@@ -98,6 +98,9 @@ namespace BookstoreApp.UI
 
         private void updateProductList()
         {
+            products = db.GetProducts();
+
+
             productsListBox.Items.Clear();
 
             foreach (Product product in products)

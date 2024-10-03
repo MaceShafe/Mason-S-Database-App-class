@@ -21,9 +21,6 @@ namespace BookstoreApp.DataAccess
             {
                 products.Add(new Product() { SKU = "ABC", Description = "Sample Product", Price = 10.0m });
             }
-
-
-
             return products;
         }
 
@@ -32,11 +29,25 @@ namespace BookstoreApp.DataAccess
             return context.Products.Find(productCode);
         }
 
-        public void SaveProducts(Product product)
+        public void AddProduct(Product product)
             {
             context.Products.Add(product);
             context.SaveChanges();
       
             }
+
+        public void UpdateProduct(Product product) 
+        {
+            context.SaveChanges();
         }
+
+
+        public void DeleteProduct(Product product)
+        {
+            context.Products.Remove(product);
+            context.SaveChanges();
+        }
+    }
+
+
     }
