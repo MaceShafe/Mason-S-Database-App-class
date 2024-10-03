@@ -36,9 +36,7 @@ namespace BookstoreApp.UI
         {
             customer = new()
             {
-                FirstName = textBox1.Text,
-                LastName = textBox2.Text,
-                Email = textBox3.Text
+                Name = nameTextBox.Text,
             };
             this.Close();
         }

@@ -1,4 +1,5 @@
 ﻿using BookstoreApp.Models;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,70 +8,46 @@ using System.Threading.Tasks;
 
 namespace BookstoreApp.DataAccess
 {
-    internal static class ProductsDatabase
+    public class ProductsDatabase
     {
 
-        private static string filename = "Product.txt";
-        private static string path = Environment.CurrentDirectory;
-        private static string separator = "|";
-
-        public static List<Product> GetProducts()
+        private MMABooksContext context = new();
+        public List<Product> GetProducts()
         {
-            var products = new List<Product>();
-            try
+            var products = context.Products.ToList();
+
+
+            if (products.Count == 0)
             {
-                using StreamReader reader = new(
-                    new FileStream(
-                    Path.Combine(path, filename),
-                    FileMode.OpenOrCreate, FileAccess.Read)
-                    );
-
-                while (reader.Peek() != -1)
-                {
-                    string line = reader.ReadLine();
-                    string[] parts = line.Split(separator);
-
-                    if (parts.Length == 3)
-                    {
-                        products.Add(new Product()
-                        {
-                            SKU = parts[0],
-                            Description = parts[1],
-                            Price = Convert.ToDecimal(parts[2])
-                        });
-                    }
-                }
-
-                if (products.Count == 0)
-                {
-                    products.Add(new Product() { SKU = "ABC", Description = "Sample Product", Price = 10.0m });
-                }
-
-            } catch (FileNotFoundException ex)
-            {
-                Console.WriteLine(ex.Message);
+                products.Add(new Product() { SKU = "ABC", Description = "Sample Product", Price = 10.0m });
             }
-
             return products;
         }
 
-
-        public static void SaveProducts(List<Product> products)
-            {
-
-            using StreamWriter sw = new StreamWriter(
-                new FileStream(
-                    Path.Combine(path, filename),
-                    FileMode.Create,
-                    FileAccess.Write)
-                );
-
-            foreach (Product product in products)
-                {
-                    sw.Write(product.SKU + separator);
-                    sw.Write(product.Description + separator);
-                    sw.WriteLine(product.Price);
-                }
-            }
+        public Product GetProduct(string productCode)
+        {
+            return context.Products.Find(productCode);
         }
+
+        public void AddProduct(Product product)
+            {
+            context.Products.Add(product);
+            context.SaveChanges();
+      
+            }
+
+        public void UpdateProduct(Product product) 
+        {
+            context.SaveChanges();
+        }
+
+
+        public void DeleteProduct(Product product)
+        {
+            context.Products.Remove(product);
+            context.SaveChanges();
+        }
+    }
+
+
     }

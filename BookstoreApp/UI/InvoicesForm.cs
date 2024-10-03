@@ -14,6 +14,11 @@ namespace BookstoreApp.UI
 {
     public partial class InvoicesForm : Form
     {
+
+        private readonly CustomersDatabase customersDatabase=new CustomersDatabase();
+        private readonly InvoicesDatabase invoiceDatabase = new InvoicesDatabase();
+
+
         public InvoicesForm()
         {
             InitializeComponent();
@@ -27,15 +32,15 @@ namespace BookstoreApp.UI
 
         private void InvoicesForm_Load(object sender, EventArgs e)
         {
-            List<Customer> customers = CustomersDatabase.GetCustomers();
-            List<Invoice> invoices = InvoicesDatabase.GetInvoices();
+            List<Customer> customers = customersDatabase.GetCustomers();
+            List<Invoice> invoices = invoiceDatabase.GetInvoices();
 
             var customerInvoices = from invoice in invoices
                                    join customer in customers
                                    on invoice.CustomerID equals customer.Id
                                    select new
                                    {
-                                       customer.FullName,
+                                       customer.Name,
                                        invoice.Id,
                                        invoice.InvoiceDate,
                                        invoice.InvoiceTotal
@@ -47,7 +52,7 @@ namespace BookstoreApp.UI
             {
                 if (invoice != null)
                 {
-                    listView1.Items.Add(invoice.FullName);
+                    listView1.Items.Add(invoice.Name);
                     listView1.Items[i].SubItems.Add(invoice.Id.ToString());
                     listView1.Items[i].SubItems.Add(invoice.InvoiceDate.ToString());
                     listView1.Items[i].SubItems.Add(invoice.InvoiceTotal.ToString());
