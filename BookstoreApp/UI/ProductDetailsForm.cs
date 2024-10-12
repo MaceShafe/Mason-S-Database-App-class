@@ -17,7 +17,7 @@ namespace BookstoreApp.UI
     public partial class ProductDetailsForm : Form
     {
         private Product currentProduct;
-        private readonly ProductsDatabase database;
+        private IProductsDatabase database;
         private bool readOnly = true;
 
         public ProductDetailsForm()
@@ -27,7 +27,7 @@ namespace BookstoreApp.UI
             InitializeComponent();
         }
 
-        public ProductDetailsForm(ProductsDatabase productsDatabase, Product currentProduct) : this()
+        public ProductDetailsForm(IProductsDatabase productsDatabase, Product currentProduct) : this()
         {
             this.database = productsDatabase;
             if (currentProduct != null)

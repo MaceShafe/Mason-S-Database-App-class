@@ -1,14 +1,8 @@
 ﻿using BookstoreApp.Models;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookstoreApp.DataAccess
 {
-    public class ProductsDatabase
+    public class ProductsDatabaseEF : IProductsDatabase
     {
 
         private MMABooksContext context = new();
@@ -30,13 +24,13 @@ namespace BookstoreApp.DataAccess
         }
 
         public void AddProduct(Product product)
-            {
+        {
             context.Products.Add(product);
             context.SaveChanges();
-      
-            }
 
-        public void UpdateProduct(Product product) 
+        }
+
+        public void UpdateProduct(Product product)
         {
             context.SaveChanges();
         }
@@ -50,4 +44,4 @@ namespace BookstoreApp.DataAccess
     }
 
 
-    }
+}

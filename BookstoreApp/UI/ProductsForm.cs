@@ -15,11 +15,12 @@ namespace BookstoreApp.UI
     public partial class ProductsForm : Form
     {
         private List<Product> products = null!;
-        private readonly ProductsDatabase db = new();
+        private IProductsDatabase database;
 
 
         public ProductsForm()
         {
+            this.database = new ProductsDatabaseEF();
             InitializeComponent();
         }
 
@@ -37,7 +38,7 @@ namespace BookstoreApp.UI
             Product newProduct = newProductsForm.GetNewProduct();
 
             products.Add(newProduct);
-            db.AddProduct(newProduct);
+            database.AddProduct(newProduct);
             updateProductList();
 
             //newProductsForm.ShowDialog();
@@ -48,7 +49,7 @@ namespace BookstoreApp.UI
         {
             Product product = productsListBox.SelectedItem as Product;
 
-            ProductDetailsForm productDetailsForm = new ProductDetailsForm(db, product);
+            ProductDetailsForm productDetailsForm = new ProductDetailsForm(database, product);
 
 
             productDetailsForm.StartPosition = FormStartPosition.CenterParent;
@@ -77,7 +78,7 @@ namespace BookstoreApp.UI
 
 
                     products.Remove(selectedProduct);
-                    db.DeleteProduct(selectedProduct);
+                    database.DeleteProduct(selectedProduct);
                     updateProductList();
                 }
             }
@@ -98,7 +99,7 @@ namespace BookstoreApp.UI
 
         private void updateProductList()
         {
-            products = db.GetProducts();
+            products = database.GetProducts();
 
 
             productsListBox.Items.Clear();
