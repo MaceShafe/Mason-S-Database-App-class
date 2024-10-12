@@ -33,6 +33,7 @@
             productsListBox = new ListBox();
             btnDelete = new Button();
             btnDetails = new Button();
+            checkBoxADO = new CheckBox();
             SuspendLayout();
             // 
             // btnAdd
@@ -83,11 +84,23 @@
             btnDetails.UseVisualStyleBackColor = true;
             btnDetails.Click += btnDetails_Click;
             // 
+            // checkBoxADO
+            // 
+            checkBoxADO.AutoSize = true;
+            checkBoxADO.Location = new Point(537, 221);
+            checkBoxADO.Name = "checkBoxADO";
+            checkBoxADO.Size = new Size(121, 24);
+            checkBoxADO.TabIndex = 5;
+            checkBoxADO.Text = "Use ADO.NET";
+            checkBoxADO.UseVisualStyleBackColor = true;
+            checkBoxADO.CheckedChanged += checkBoxADO_CheckedChanged;
+            // 
             // ProductsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(720, 332);
+            Controls.Add(checkBoxADO);
             Controls.Add(btnDetails);
             Controls.Add(btnDelete);
             Controls.Add(productsListBox);
@@ -97,6 +110,7 @@
             Text = "Bookstore Manager: Products";
             Load += ProductsForm_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -106,5 +120,6 @@
         private ListBox productsListBox;
         private Button btnDelete;
         private Button btnDetails;
+        private CheckBox checkBoxADO;
     }
 }

@@ -16,7 +16,7 @@ namespace BookstoreApp.UI
     {
         private List<Product> products = null!;
         private IProductsDatabase database;
-
+        private bool useAdoNet = false;
 
         public ProductsForm()
         {
@@ -110,6 +110,18 @@ namespace BookstoreApp.UI
             }
         }
 
+        private void checkBoxADO_CheckedChanged(object sender, EventArgs e)
+        {
+            this.useAdoNet = checkBoxADO.Checked;
 
+            if (useAdoNet)
+            {
+                database = new ProductsDatabaseADO();
+            }
+            else
+            {
+                database = new ProductsDatabaseEF();
+            }
+        }
     }
 }
