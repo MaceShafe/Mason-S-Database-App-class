@@ -1,21 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreApp.Models
+namespace BookstoreApp.Models;
+
+public partial class Invoice
 {
-    internal class Invoice
-    {
-        public int Id { get; set; }
+    [Key]
+    [Column("InvoiceID")]
+    public int Id { get; set; }
 
-        public int CustomerID {  get; set; }
+    [Column("CustomerID")]
+    public int CustomerID { get; set; }
 
-        public Customer Cusotmer{ get; set; }
+    public DateTime InvoiceDate { get; set; }
 
-        public DateTime InvoiceDate { get; set; }
-        
-        public decimal InvoiceTotal { get; set; }
-    }
+    [Column(TypeName = "money")]
+    public decimal ProductTotal { get; set; }
+
+    [Column(TypeName = "money")]
+    public decimal SalesTax { get; set; }
+
+    [Column(TypeName = "money")]
+    public decimal Shipping { get; set; }
+
+    [Column(TypeName = "money")]
+    public decimal InvoiceTotal { get; set; }
+
+    [ForeignKey("CustomerId")]
+    [InverseProperty("Invoices")]
+    public virtual Customer Customer { get; set; } = null!;
+
+    [InverseProperty("Invoice")]
+    public virtual ICollection<InvoiceLineItem> InvoiceLineItems { get; set; } = new List<InvoiceLineItem>();
 }

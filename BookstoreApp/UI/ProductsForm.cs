@@ -15,6 +15,8 @@ namespace BookstoreApp.UI
     public partial class ProductsForm : Form
     {
         private List<Product> products = null!;
+        private readonly ProductsDatabase db = new();
+
 
         public ProductsForm()
         {
@@ -23,7 +25,6 @@ namespace BookstoreApp.UI
 
         private void ProductsForm_Load(object sender, EventArgs e)
         {
-            products = ProductsDatabase.GetProducts();
 
             updateProductList();
         }
@@ -33,11 +34,28 @@ namespace BookstoreApp.UI
             NewProductForm newProductsForm = new();
             newProductsForm.StartPosition = FormStartPosition.CenterParent;
 
-            products.Add(newProductsForm.GetNewProduct());
-            ProductsDatabase.SaveProducts(products);
+            Product newProduct = newProductsForm.GetNewProduct();
+
+            products.Add(newProduct);
+            db.AddProduct(newProduct);
             updateProductList();
 
             //newProductsForm.ShowDialog();
+
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            Product product = productsListBox.SelectedItem as Product;
+
+            ProductDetailsForm productDetailsForm = new ProductDetailsForm(db, product);
+
+
+            productDetailsForm.StartPosition = FormStartPosition.CenterParent;
+            productDetailsForm.ShowDialog();
+
+            updateProductList();
+
 
         }
 
@@ -56,8 +74,10 @@ namespace BookstoreApp.UI
 
                 if (result == DialogResult.Yes)
                 {
+
+
                     products.Remove(selectedProduct);
-                    ProductsDatabase.SaveProducts(products);
+                    db.DeleteProduct(selectedProduct);
                     updateProductList();
                 }
             }
@@ -74,8 +94,13 @@ namespace BookstoreApp.UI
             this.Close();
         }
 
+
+
         private void updateProductList()
         {
+            products = db.GetProducts();
+
+
             productsListBox.Items.Clear();
 
             foreach (Product product in products)
@@ -83,5 +108,7 @@ namespace BookstoreApp.UI
                 productsListBox.Items.Add(product);
             }
         }
+
+
     }
 }

@@ -32,13 +32,14 @@
             btnExit = new Button();
             productsListBox = new ListBox();
             btnDelete = new Button();
+            btnDetails = new Button();
             SuspendLayout();
             // 
             // btnAdd
             // 
             btnAdd.Location = new Point(533, 12);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(174, 84);
+            btnAdd.Size = new Size(174, 55);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "Add Product";
             btnAdd.UseVisualStyleBackColor = true;
@@ -46,7 +47,7 @@
             // 
             // btnExit
             // 
-            btnExit.Location = new Point(533, 345);
+            btnExit.Location = new Point(533, 267);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(174, 51);
             btnExit.TabIndex = 1;
@@ -59,24 +60,35 @@
             productsListBox.FormattingEnabled = true;
             productsListBox.Location = new Point(12, 12);
             productsListBox.Name = "productsListBox";
-            productsListBox.Size = new Size(501, 384);
+            productsListBox.Size = new Size(503, 304);
             productsListBox.TabIndex = 2;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(533, 102);
+            btnDelete.Location = new Point(533, 134);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(174, 84);
+            btnDelete.Size = new Size(174, 55);
             btnDelete.TabIndex = 3;
             btnDelete.Text = "Delete Product";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
+            // btnDetails
+            // 
+            btnDetails.Location = new Point(533, 73);
+            btnDetails.Name = "btnDetails";
+            btnDetails.Size = new Size(174, 55);
+            btnDetails.TabIndex = 4;
+            btnDetails.Text = "Product Details";
+            btnDetails.UseVisualStyleBackColor = true;
+            btnDetails.Click += btnDetails_Click;
+            // 
             // ProductsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(738, 450);
+            ClientSize = new Size(720, 332);
+            Controls.Add(btnDetails);
             Controls.Add(btnDelete);
             Controls.Add(productsListBox);
             Controls.Add(btnExit);
@@ -93,5 +105,6 @@
         private Button btnExit;
         private ListBox productsListBox;
         private Button btnDelete;
+        private Button btnDetails;
     }
 }

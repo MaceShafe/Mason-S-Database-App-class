@@ -1,4 +1,4 @@
-namespace BookstoreApp.UI
+    namespace BookstoreApp.UI
 {
     public partial class MainForm : Form
     {
