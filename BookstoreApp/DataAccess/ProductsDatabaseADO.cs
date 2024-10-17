@@ -99,11 +99,11 @@ namespace BookstoreApp.DataAccess
         public void UpdateProduct(Product product)
         {
             string updateStatement =
-                "UPDATE Products SET"+
-                "Description =@Description"+
-                "UnitPrice=@UnitPrice"+
-                "OnHandQuantity= @OnHandQuantity" +
-                "WHERE ProductCode=@ProductCode";
+                "UPDATE Products SET "+
+                "Description =@Description, "+
+                "UnitPrice=@UnitPrice, "+
+                "OnHandQuantity= @OnHandQuantity " +
+                "WHERE ProductCode= @ProductCode";
 
 
             SqlConnection connection = new(connectionString);
