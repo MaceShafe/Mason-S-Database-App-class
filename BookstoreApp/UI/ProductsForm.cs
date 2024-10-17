@@ -1,14 +1,5 @@
 ﻿using BookstoreApp.DataAccess;
 using BookstoreApp.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BookstoreApp.UI
 {
@@ -37,10 +28,28 @@ namespace BookstoreApp.UI
 
             Product newProduct = newProductsForm.GetNewProduct();
 
-            products.Add(newProduct);
-            database.AddProduct(newProduct);
-            updateProductList();
+            try {
+                database.AddProduct(newProduct);
 
+                products.Add(newProduct);
+                updateProductList();
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null)
+                {
+                    MessageBox.Show(ex.InnerException.Message,
+                        "Unable to add product",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                } else
+                {
+                    MessageBox.Show(ex.Message,
+                    "Unable to add product",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+            }
             //newProductsForm.ShowDialog();
 
         }
@@ -76,10 +85,29 @@ namespace BookstoreApp.UI
                 if (result == DialogResult.Yes)
                 {
 
-
-                    products.Remove(selectedProduct);
-                    database.DeleteProduct(selectedProduct);
-                    updateProductList();
+                    try
+                    {
+                        products.Remove(selectedProduct);
+                        database.DeleteProduct(selectedProduct);
+                        updateProductList();
+                    }
+                    catch (Exception ex) 
+                    {
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show(ex.InnerException.Message,
+                                "Unable to delete product",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show(ex.Message,
+                            "Unable to delete product",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
             else
@@ -122,6 +150,8 @@ namespace BookstoreApp.UI
             {
                 database = new ProductsDatabaseEF();
             }
+
+            updateProductList();
         }
     }
 }

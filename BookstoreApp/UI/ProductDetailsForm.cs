@@ -40,11 +40,31 @@ namespace BookstoreApp.UI
         {
             if (!readOnly)
             {
-                currentProduct.Price = Convert.ToDecimal(PriceTextBox.Text);
+                try
+                {
+                    currentProduct.Price = Convert.ToDecimal(PriceTextBox.Text);
                 currentProduct.Description = DescriptionTextBox.Text;   
                 currentProduct.OnHandQuantity=Convert.ToInt32(OnHandTextBox.Text);
 
-                database.UpdateProduct(currentProduct);
+                    database.UpdateProduct(currentProduct);
+                }
+                catch (Exception ex) {
+                    if (ex.InnerException != null)
+                    {
+                        MessageBox.Show(ex.InnerException.Message,
+                            "Unable to add product",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(ex.Message,
+                        "Unable to add product",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    }
+
+                }
             }
             this.Close();
         }
@@ -93,9 +113,29 @@ namespace BookstoreApp.UI
             if (result == DialogResult.Yes)
             {
 
+                try
+                {
+                    database.DeleteProduct(currentProduct);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
 
-                database.DeleteProduct(currentProduct);
-                this.Close();
+                    if (ex.InnerException != null)
+                    {
+                        MessageBox.Show(ex.InnerException.Message,
+                            "Unable to delete product",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(ex.Message,
+                        "Unable to delete product",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
@@ -111,6 +151,8 @@ namespace BookstoreApp.UI
         private void btnEdit_Click(object sender, EventArgs e)
         {
             readOnly = !readOnly;
+
+            SKUTextBox.ReadOnly = !readOnly;
 
             DescriptionTextBox.ReadOnly = readOnly;
             OnHandTextBox.ReadOnly = readOnly;
