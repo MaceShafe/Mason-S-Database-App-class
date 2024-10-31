@@ -1,0 +1,49 @@
+﻿@model ContosoUniversity.Models.Student
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstMidName" class="control-label">First + Middle Name</label>
+                <input asp-for="FirstMidName" class="form-control" />
+                <span asp-validation-for="FirstMidName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnrollmentDate" class="control-label">Enrollment Date</label>
+                <input asp-for="EnrollmentDate" class="form-control" />
+                <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="btn btn-light" asp-action="Index">Back to List</a>
+
+            </div>
+
+        </form>
+
+    </div>
+    <div class="col-md-8">
+        <img src="https://media.istockphoto.com/id/1365601848/photo/portrait-of-a-young-woman-carrying-her-schoolbooks-outside-at-college.jpg?s=612x612&w=0&k=20&c=EVxLUZsL0ueYFF1Nixit6hg-DkiV52ddGw_orw9BSJA=" />
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
